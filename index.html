@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Kan-ban Board</title>
+  </head>
+  <body>
+    <div class="container display-flex fw-wrap">
+      <div class="board to-do">
+        <h1>Todo</h1>
+        <div class="board-items">
+          <div class="card" draggable="true">This is a card</div>
+        </div>
+      </div>
+      <div class="board doing">
+        <h1>Doing</h1>
+        <div class="board-items"></div>
+      </div>
+      <div class="board done">
+        <h1>Done</h1>
+        <div class="board-items"></div>
+      </div>
+    </div>
+
+    <script src="/js/main.js" type="module"></script>
+  </body>
+</html>
