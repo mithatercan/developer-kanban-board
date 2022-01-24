@@ -4,27 +4,119 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Spartan:wght@100;200;300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="style.css" />
     <title>Kan-ban Board</title>
   </head>
   <body>
-    <div class="container display-flex fw-wrap">
-      <div class="board to-do">
-        <h1>Todo</h1>
-        <div class="board-items">
-          <div class="card" draggable="true">This is a card</div>
+    <div class="container">
+      <aside class="sidebar">
+        <div class="logo">
+          <img src="https://img.icons8.com/color-glass/48/000000/icons8-logo.png" />
         </div>
-      </div>
-      <div class="board doing">
-        <h1>Doing</h1>
-        <div class="board-items"></div>
-      </div>
-      <div class="board done">
-        <h1>Done</h1>
-        <div class="board-items"></div>
-      </div>
-    </div>
 
+        <div class="sidebar-inner">
+          <img src="https://img.icons8.com/color-glass/32/000000/home.png" />
+          <img src="https://img.icons8.com/color-glass/32/000000/search.png" />
+          <img src="https://img.icons8.com/color-glass/32/000000/support.png" />
+          <img src="https://img.icons8.com/color-glass/32/000000/share-2.png" />
+          <img src="https://img.icons8.com/color-glass/32/000000/info.png" />
+        </div>
+
+        <footer class="sidebar-footer">
+          <img src="https://img.icons8.com/color/38/000000/user-location.png" />
+        </footer>
+      </aside>
+      <section>
+        <div class="boards-container">
+          <div class="board todo">
+            <div class="board-header">
+              <h3>To do 🚀</h3>
+              <button>New Item +</button>
+            </div>
+            <div class="inner">
+              <div class="task-wrapper" draggable="true">
+                <div class="task-content">
+                  <div class="task-title">
+                    <h4>Task 1</h4>
+                    <div class="task-icon">...</div>
+                  </div>
+                  <div class="task-description">
+                    <p>
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quidem.
+                    </p>
+                  </div>
+                </div>
+                <div class="task-footer">
+                  <div class="task-footer-item">
+                    <p>
+                      <span>
+                        <time datetime="2020-05-01">May 1, 2020</time>
+                      </span>
+                    </p>
+                  </div>
+                  <div class="task-footer-item">
+                    <img
+                      class="avatar"
+                      src="https://randomuser.me/api/portraits/men/66.jpg"
+                      alt=""
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="task-wrapper" draggable="true">
+                <div class="task-content">
+                  <div class="task-title">
+                    <h4>Task 2</h4>
+                    <div class="task-icon">...</div>
+                  </div>
+                  <div class="task-description">
+                    <p>
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quidem.
+                    </p>
+                  </div>
+                </div>
+                <div class="task-footer">
+                  <div class="task-footer-item">
+                    <p>
+                      <span>
+                        <time datetime="2020-05-01">May 1, 2020</time>
+                      </span>
+                    </p>
+                  </div>
+                  <div class="task-footer-item">
+                    <p>
+                      <span>
+                        <a href="#">@John Doe</a>
+                      </span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="board in-progress">
+            <div class="board-header">
+              <h3>In Progress 🔧</h3>
+              <button>+ New Item</button>
+            </div>
+            <div class="inner"></div>
+          </div>
+          <div class="board done">
+            <div class="board-header">
+              <h3>Done 💪</h3>
+              <button>New Item +</button>
+            </div>
+            <div class="inner"></div>
+          </div>
+        </div>
+      </section>
+    </div>
     <script src="/js/main.js" type="module"></script>
   </body>
 </html>
