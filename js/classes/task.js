@@ -1,34 +1,81 @@
-class Task {
-  constructor(name, description, priority, createdDate) {
-    this.name = name;
-    this.description = description;
-    this.priority = priority;
-    this.createdDate = createdDate;
+import { draggedTask } from "../variables/index.js";
+
+class Task extends HTMLElement {
+  constructor() {
+    super();
+    this.heading = "";
+    this.description = "";
+    this.avatar = "";
+    this.dueDate = "";
   }
 
-  create() {
-    //create a new task
-    const task = document.createElement("div");
-    task.classList.add("task");
-    task.setAttribute("draggable", "true");
-    task.innerHTML = `
-      <div class="task-header">
-        <h3 class="task-name">${this.name}</h3>
-        <p class="task-description">${this.description}</p>
-      </div>
-      <div class="task-footer">
-        <p class="task-priority">Priority: ${this.priority}</p>
-        <p class="task-created-date">Created: ${this.createdDate}</p>
-      </div>
-    `;
-    this.appendToBoard(task);
-  }
+  // static get observedAttributes() {
+  //   return ["title", "description", "avatar", "dueDate"];
+  // }
 
-  appendToBoard(task) {
-    //append the task to the board
-    const boards = document.querySelectorAll(".board .board-items");
-    boards.forEach((board) => {
-      board.append(task);
+  // attributeChangedCallback(props, oldValue, newValue) {
+  //   this[props] = newValue;
+  //   this.render();
+  // }
+
+  connectedCallback() {
+    this.classList.add("task-wrapper");
+    this.setAttribute("draggable", true);
+
+    this.heading = this.getAttribute("heading");
+    this.description = this.getAttribute("description");
+    this.avatar = this.getAttribute("avatar");
+    this.dueDate = this.getAttribute("due-date");
+
+    this.render();
+
+    //add drag start and end events
+    this.addEventListener("dragstart", (e) => {
+      this.html.classList.add("dragging");
+      draggedTask.setTask(this.html);
+    });
+
+    this.addEventListener("dragend", (e) => {
+      this.html.classList.remove("dragging");
+      draggedTask.removeTask();
     });
   }
+
+  render() {
+    this.innerHTML = `
+      <div class='task-content'>
+                  <div class="task-title">
+                    <h4>${this.heading}</h4>
+                    <div class="task-icon">
+                      <img src="https://img.icons8.com/material-outlined/18/000000/filled-trash.png"/>
+                    </div>
+                  </div>
+                  <div class="task-description">
+                    <p>
+                      ${this.description}
+                    </p>
+                  </div>
+                </div>
+                <div class="task-footer">
+                  <div class="task-footer-item">
+                    <p>
+                      <span>
+                        <time datetime="${this.dueDate}">${this.dueDate}</time>
+                      </span>
+                    </p>
+                  </div>
+                  <div class="task-footer-item">
+                    <img
+                      draggable="false"
+                      class="avatar"
+                      src="${this.avatar}"
+                      alt=""
+                    />
+                  </div>
+                </div>
+                `;
+  }
 }
+
+customElements.define("task-component", Task);
+export default Task;
