@@ -1,6 +1,6 @@
 import boardDragover from "../methods/boardDragover.js";
 
-class Section extends HTMLElement {
+class Board extends HTMLElement {
   constructor() {
     super();
   }
@@ -11,13 +11,13 @@ class Section extends HTMLElement {
 
     //events
     let newTaskBtn = this.querySelector(".todo-btn");
+    let boards = this.querySelectorAll(".board .inner");
 
     newTaskBtn.addEventListener("click", (e) => {
       let modal = document.querySelector(".new-task-modal");
       modal.classList.toggle("opened");
     });
 
-    let boards = this.querySelectorAll(".board .inner");
     boards.forEach(boardDragover);
   }
 
@@ -49,6 +49,6 @@ class Section extends HTMLElement {
   }
 }
 
-customElements.define("section-component", Section);
+customElements.define("board-component", Board);
 
-export default Section;
+export default Board;
