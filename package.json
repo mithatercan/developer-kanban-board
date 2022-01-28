@@ -1,0 +1,24 @@
+{
+  "name": "kanban-board",
+  "version": "1.0.0",
+  "description": "Vanilla JavaScript kan-ban board with custom elements.",
+  "main": "index.html",
+  "scripts": {
+    "start": "http-server -p 8080 -o"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mithatercann/kanban-board.git"
+  },
+  "author": "Mithat Ercan",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mithatercann/kanban-board/issues"
+  },
+  "homepage": "https://github.com/mithatercann/kanban-board#readme",
+  "dependencies": {
+    "http-server": "^0.9.0",
+    "live-server": "^1.2.1",
+    "local-web-server": "^5.1.1"
+  }
+}

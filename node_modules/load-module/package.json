@@ -1,0 +1,48 @@
+{
+  "name": "load-module",
+  "author": "Lloyd Brookes <75pound@gmail.com>",
+  "version": "4.2.1",
+  "description": "Standard dynamic imports with a few extra features",
+  "repository": "https://github.com/75lb/load-module.git",
+  "license": "MIT",
+  "keywords": [
+    "load",
+    "require",
+    "module",
+    "package",
+    "import",
+    "esm"
+  ],
+  "exports": {
+    "import": "./index.mjs",
+    "require": "./dist/index.cjs"
+  },
+  "engines": {
+    "node": ">=12.17"
+  },
+  "files": [
+    "index.mjs",
+    "dist"
+  ],
+  "scripts": {
+    "test": "npm run dist && npm run test:ci",
+    "test:ci": "test-runner test/*.mjs && test-runner test/*.cjs",
+    "dist": "echo MANUALLY CREATE THE CJS DIST",
+    "cover": "c8 --reporter=text-lcov npm test | coveralls"
+  },
+  "devDependencies": {
+    "c8": "^7.7.3",
+    "coveralls": "^3.1.1",
+    "current-module-paths": "^1.0.0",
+    "test-runner": "^0.9.7"
+  },
+  "dependencies": {
+    "array-back": "^6.2.0"
+  },
+  "standard": {
+    "ignore": [
+      "test/fixture",
+      "tmp"
+    ]
+  }
+}
