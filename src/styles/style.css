@@ -1,4 +1,6 @@
-* {
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -33,13 +35,36 @@ a {
 i {
   cursor: pointer;
 }
+select {
+  background-color: transparent;
+  appearance: none;
+  border: none;
+  padding: 0 1em 0 0;
+  margin: 0;
+  width: 100%;
+  font-family: inherit;
+  font-size: inherit;
+  cursor: inherit;
+  line-height: inherit;
+}
+
+.select {
+  grid-template-areas: "select";
+}
+
+select,
+.select:after {
+  grid-area: select;
+}
 
 button {
   background-color: transparent;
   border: none;
   cursor: pointer;
 }
-
+*[contenteditable="true"]:focus {
+  outline: 1px solid rgb(236, 236, 236);
+}
 .container {
   display: flex;
   height: 100vh;
@@ -147,12 +172,13 @@ button {
 }
 
 .new-task-modal form input,
-textarea {
+textarea,
+select {
   width: 100%;
   margin: 1rem 0;
   padding: 1rem;
-  border: none;
-  border-bottom: 1px solid rgb(214, 214, 214);
+  border: 1px solid rgb(231, 231, 231);
+  border-radius: 5px;
 }
 
 .new-task-modal form textarea {
@@ -172,10 +198,14 @@ textarea:focus {
   padding: 1rem;
   border: none;
   border-radius: 5px;
-  background-color: #2bbcc7;
+  background-color: #819abe;
   color: #fff;
   font-weight: bold;
   cursor: pointer;
+}
+
+.new-task-modal form select:focus {
+  outline: 1px solid #2bbcc7;
 }
 
 .boards-container {
@@ -209,6 +239,9 @@ textarea:focus {
   border-radius: 5px;
 }
 
+.board-header .new-task-btn:hover {
+  color: rgb(74, 156, 88);
+}
 .todo h3 {
   background-color: #eaeff0;
   color: #6c7377;
@@ -264,6 +297,11 @@ textarea:focus {
   margin-bottom: 1.5rem;
   transition: 0.2s;
 }
+
+.task-wrapper.hide {
+  animation: fadeOut 0.2s ease-in-out forwards;
+}
+
 .task-wrapper.dragging {
   opacity: 0.4;
   box-shadow: 0 0 0 1px #6293d765;
@@ -272,6 +310,16 @@ textarea:focus {
 .task-wrapper h4 {
   font-weight: 600;
   font-size: 1.4rem;
+}
+.task-wrapper i {
+  color: #5c5c5c;
+
+  transition: 0.2s;
+  border-radius: 50%;
+}
+.task-wrapper i:hover {
+  background-color: #e86163;
+  color: #fff;
 }
 
 .task-wrapper .task-title {
@@ -307,6 +355,21 @@ textarea:focus {
   margin-left: 0.5rem;
 }
 
+.task-footer-item .priority {
+  padding: 0.4rem 1rem;
+  font-weight: 500;
+  font-size: 1.2rem;
+  border-radius: 20px;
+}
+.task-footer-item .priority.hold {
+  background-color: #fdcaca;
+  color: #e65456;
+}
+.task-footer-item .priority.low {
+  background-color: #f0f0f0;
+  color: #6c7377;
+}
+
 .page-footer {
   position: absolute;
   bottom: 10px;
@@ -321,10 +384,92 @@ textarea:focus {
   font-weight: 500;
 }
 
-/* MOBILE */
+/* TOAST MESSAGE */
+
+.toast {
+  position: fixed;
+  right: -100%;
+  top: 4rem;
+  padding: 1rem 1rem;
+  border-radius: 5px;
+  animation: appear 0.5s ease-in-out forwards;
+}
+
+.toast.disappear {
+  animation: disappear 0.3s ease-in-out forwards;
+}
+
+.toast i {
+  display: flex;
+  align-items: center;
+  font-size: 2rem;
+  margin-right: 1rem;
+}
+
+.toast.success {
+  background-color: #d5eeda;
+  color: #658f6b;
+}
+
+.toast.success i {
+  color: #2f5c36;
+}
+
+.toast.danger i {
+  color: #bb3234;
+}
+
+.toast.danger {
+  background-color: #fdcaca;
+  color: #e65456;
+}
+
+.toast-content {
+  display: flex;
+  align-items: center;
+  font-size: 1.5rem;
+}
+
+/* FOR MOBILE */
 
 @media screen and (max-width: 780px) {
   .boards-container {
     flex-direction: column;
+  }
+}
+
+/* Animations */
+
+/* TASK */
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+/* TOAST */
+@keyframes appear {
+  form {
+    opacity: 0;
+    right: -100%;
+  }
+  to {
+    opacity: 1;
+    right: 6rem;
+  }
+}
+
+@keyframes disappear {
+  from {
+    opacity: 1;
+    right: 6rem;
+  }
+  to {
+    opacity: 0;
+    right: -100%;
   }
 }
