@@ -1,42 +1,40 @@
-import { tasks } from "../variables/index.js";
-import fetchAccount from "./fetchAccount.js";
-import generateId from "./generateId.js";
+import { myApp } from "../variables/index.js";
+import createElement from "./createElement.js";
+import getFormData from "./getFormData.js";
+import updateStorage from "./updateStorage.js";
 
 const handleSubmit = async (e) => {
   e.preventDefault();
   const todoBoard = document.querySelector(".todo .inner");
+  const formData = await getFormData(e.target);
+  console.log(formData);
+  // For local storage
 
-  const id = generateId();
-  const heading = e.target.elements.heading.value;
-  const description = e.target.elements.description.value;
-  const account = e.target.elements.account.value;
-  const accountData = await fetchAccount(account);
+  updateStorage({
+    type: "add",
+    payload: formData,
+  });
 
-  // FOR LOCAL STORAGE
-  tasks.push({
-    id: id,
-    heading,
-    description,
-    avatar: accountData.avatar_url,
-    accountName: accountData.login,
-    accountUrl: accountData.html_url,
+  // Create elements
+  const task = createElement("task-component", {
+    uid: formData.uid,
+    heading: formData.heading,
+    description: formData.description,
+    priority: formData.priority,
+    avatar: formData.avatar,
+    "account-name": formData.accountName,
+    "account-url": formData.accountUrl,
     status: "todo",
   });
 
-  localStorage.setItem("data", JSON.stringify(tasks));
+  const toast = createElement("toast-component", {
+    message: "Task added successfully",
+    type: "success",
+    seconds: 3,
+  });
 
-  // Append new task to the board
-
-  todoBoard.innerHTML += `
-   <task-component
-        id="${id}"
-        heading="${heading}"
-        description="${description}"
-        avatar="${accountData.avatar_url}"
-        account-url="${accountData.html_url}"
-        account-name="${accountData.login}"
-      >
-  </task-component>`;
+  todoBoard.appendChild(task);
+  myApp.appendChild(toast);
 
   e.target.reset();
 };

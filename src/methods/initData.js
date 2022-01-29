@@ -1,57 +1,38 @@
+import createElement from "./createElement.js";
+
 const initData = () => {
+  const todoBoard = document.querySelector(".todo .inner");
+  const inProgressBoard = document.querySelector(".in-progress .inner");
+  const doneBoard = document.querySelector(".done .inner");
+
   const localStorageData = JSON.parse(localStorage.getItem("data"));
 
   if (localStorageData) {
     localStorageData.forEach((task) => {
-      const todoBoard = document.querySelector(".todo .inner");
-      const inProgressBoard = document.querySelector(".in-progress .inner");
-      const doneBoard = document.querySelector(".done .inner");
+      const taskElement = createElement("task-component", {
+        uid: task.uid,
+        heading: task.heading,
+        description: task.description,
+        priority: task.priority,
+        avatar: task.avatar,
+        "account-name": task.accountName,
+        "account-url": task.accountUrl,
+        status: task.status,
+      });
 
       switch (task.status) {
         case "todo":
-          todoBoard.innerHTML += `
-        <task-component
-        id="${task.id}"
-        heading="${task.heading}"
-        description="${task.description}"
-        due-date="${task.dueDate}"
-        avatar="${task.avatar}"
-        account-url="${task.accountUrl}"
-        account-name="${task.accountName}"
-      >
-      </task-component>`;
+          todoBoard.appendChild(taskElement);
           break;
-
         case "in-progress":
-          inProgressBoard.innerHTML += `
-        <task-component
-        id="${task.id}"
-        heading="${task.heading}"
-        description="${task.description}"
-        due-date="${task.dueDate}"
-        avatar="${task.avatar}"
-        account-url="${task.accountUrl}"
-        account-name="${task.accountName}"
-      >
-      </task-component>`;
-
+          inProgressBoard.appendChild(taskElement);
           break;
         case "done":
-          doneBoard.innerHTML += `
-        <task-component
-        id="${task.id}"
-        heading="${task.heading}"
-        description="${task.description}"
-        due-date="${task.dueDate}"
-        avatar="${task.avatar}"
-        account-url="${task.accountUrl}"
-        account-name="${task.accountName}"
-      >
-      </task-component>`;
+          doneBoard.appendChild(taskElement);
           break;
       }
     });
   }
 };
 
-// export default initData;
+export default initData;
