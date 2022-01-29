@@ -6,6 +6,8 @@ import Sidebar from "./components/Sidebar.js";
 import Modal from "./components/Modal.js";
 import Task from "./components/Task.js";
 import Footer from "./components/Footer.js";
+import Toast from "./components/Toast.js";
+import initData from "./methods/initData.js";
 
 myApp.innerHTML = `
     <sidebar-component></sidebar-component>
@@ -13,3 +15,5 @@ myApp.innerHTML = `
     <modal-component></modal-component>
     <footer-component></footer-component>
 `;
+
+initData();
