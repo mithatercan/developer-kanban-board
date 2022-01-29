@@ -24,9 +24,9 @@ class Board extends HTMLElement {
   render() {
     this.innerHTML = `
     <div class="boards-container">
-      <div class="board todo">
+      <div  class="board todo">
         <div class="board-header">
-          <h3>No stage</h3>
+          <h3>To do</h3>
           <div class="board-header-icons">
             <i class="material-icons">more_horiz</i>
             <button class='new-task-btn'>
@@ -34,7 +34,7 @@ class Board extends HTMLElement {
             </button>
           </div>
         </div>
-        <div class="inner"></div>
+        <div data-status="todo" class="inner"></div>
       </div>
       <div class="board in-progress">
         <div class="board-header">
@@ -43,7 +43,7 @@ class Board extends HTMLElement {
             <i class="material-icons">more_horiz</i>
           </div>
         </div>
-        <div class="inner"></div>
+        <div  data-status="in-progress" class="inner"></div>
       </div>
       <div class="board done">
         <div class="board-header">
@@ -52,7 +52,7 @@ class Board extends HTMLElement {
             <i class="material-icons">more_horiz</i>
           </div>
         </div>
-        <div class="inner"></div>
+        <div data-status="done" class="inner"></div>
       </div>
     </div>
 `;

@@ -29,13 +29,16 @@ class Modal extends HTMLElement {
     this.innerHTML = `  
     <form>
       <div class="header">
-       <h1>New task</h1>
+       <h1>Add todo</h1>
        <i class="material-icons">close</i>
       </div>
-      <input type="text" name="heading" placeholder="Heading" required />
-      <div class="chips chips-initial"></div>
+      <input type="text" name="heading" placeholder="Heading" required /> 
       <textarea name="description" placeholder="Description" required></textarea>
       <input type="text" name="account" placeholder="Github account" required />
+      <select name="priority">
+        <option value="low">Low</option>
+        <option value="hold">Hold</option>
+      </select>
       <input type="submit" value="Create" />
     </form>
 `;
