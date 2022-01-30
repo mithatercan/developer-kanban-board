@@ -7,16 +7,10 @@ const handleSubmit = async (e) => {
   e.preventDefault();
   const todoBoard = document.querySelector(".todo .inner");
   const formData = await getFormData(e.target);
-  console.log(formData);
-  // For local storage
-
-  updateStorage({
-    type: "add",
-    payload: formData,
-  });
 
   // Create elements
   const task = createElement("task-component", {
+    draggable: true,
     uid: formData.uid,
     heading: formData.heading,
     description: formData.description,
@@ -31,6 +25,11 @@ const handleSubmit = async (e) => {
     message: "Task added successfully",
     type: "success",
     seconds: 3,
+  });
+
+  updateStorage({
+    type: "add",
+    payload: formData,
   });
 
   todoBoard.appendChild(task);

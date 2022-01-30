@@ -4,12 +4,12 @@ const initData = () => {
   const todoBoard = document.querySelector(".todo .inner");
   const inProgressBoard = document.querySelector(".in-progress .inner");
   const doneBoard = document.querySelector(".done .inner");
+  const localData = JSON.parse(localStorage.getItem("data"));
 
-  const localStorageData = JSON.parse(localStorage.getItem("data"));
-
-  if (localStorageData) {
-    localStorageData.forEach((task) => {
+  if (localData) {
+    localData.forEach((task) => {
       const taskElement = createElement("task-component", {
+        draggable: true,
         uid: task.uid,
         heading: task.heading,
         description: task.description,
@@ -32,6 +32,8 @@ const initData = () => {
           break;
       }
     });
+  } else {
+    localStorage.setItem("data", "[]");
   }
 };
 
