@@ -4,15 +4,14 @@ class Sidebar extends HTMLElement {
   }
 
   connectedCallback() {
-    this.render();
     this.classList.add("sidebar");
+    this.render();
   }
 
   render() {
     this.innerHTML = `
     <div class="logo">
-           <i class="material-icons">assessment</i>
- 
+      <i class="material-icons">assessment</i>
     </div>
     <div class="sidebar-inner">
       <i class="material-icons">dashboard</i>
@@ -21,7 +20,6 @@ class Sidebar extends HTMLElement {
       <i class="material-icons">event</i>
       <i class="material-icons">mms</i>
     </div>
-
     <footer class="sidebar-footer">
       <img src="https://avatars.githubusercontent.com/u/71825314?v=4" alt="avatar"/>
     </footer>

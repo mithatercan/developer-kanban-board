@@ -5,23 +5,21 @@ class Modal extends HTMLElement {
     super();
   }
 
-  closeModal() {
-    this.classList.remove("opened");
-  }
-
   connectedCallback() {
-    this.render();
     this.classList.add("new-task-modal");
+    this.render();
 
     const closeBtn = this.querySelector("i");
     const form = this.querySelector("form");
 
-    closeBtn.addEventListener("click", this.closeModal.bind(this));
+    closeBtn.addEventListener("click", (e) => {
+      this.classList.remove("opened");
+    });
 
     //handle form submit
     form.addEventListener("submit", (e) => {
       handleSubmit(e);
-      this.closeModal();
+      this.classList.remove("opened");
     });
   }
 

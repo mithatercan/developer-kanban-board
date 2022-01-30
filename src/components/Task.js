@@ -1,6 +1,6 @@
 import { draggedTask } from "../variables/index.js";
-import fetchAccount from "../methods/fetchAccount.js";
 import updateStorage from "../methods/updateStorage.js";
+import getElementIndex from "../methods/getElementIndex.js";
 class Task extends HTMLElement {
   constructor() {
     super();
@@ -26,13 +26,22 @@ class Task extends HTMLElement {
   }
 
   static get observedAttributes() {
-    return ["heading", "description", "status", "priority"];
+    return [
+      "heading",
+      "description",
+      "status",
+      "priority",
+      "uid",
+      "avatar",
+      "account-name",
+      "account-url",
+    ];
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
     this.setState(name);
 
-    if (oldValue && oldValue !== newValue) {
+    if (oldValue !== newValue) {
       updateStorage({
         type: "edit",
         payload: this.state,
@@ -42,16 +51,6 @@ class Task extends HTMLElement {
 
   connectedCallback() {
     this.classList.add("task-wrapper");
-    this.setAttribute("draggable", true);
-    this.setState("heading");
-    this.setState("description");
-    this.setState("avatar");
-    this.setState("account-url");
-    this.setState("account-name");
-    this.setState("status");
-    this.setState("priority");
-    this.setState("uid");
-
     this.render();
 
     // Add events
@@ -65,14 +64,13 @@ class Task extends HTMLElement {
       this.classList.add("hide");
       setTimeout(() => {
         this.remove();
+        updateStorage({
+          type: "delete",
+          payload: {
+            uid: this.state.uid,
+          },
+        });
       }, 400);
-
-      updateStorage({
-        type: "delete",
-        payload: {
-          uid: this.state.uid,
-        },
-      });
     });
 
     // edit contents

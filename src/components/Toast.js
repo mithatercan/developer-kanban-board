@@ -16,17 +16,7 @@ class Toast extends HTMLElement {
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
-    switch (name) {
-      case "message":
-        this.setState("message", name);
-        break;
-      case "type":
-        this.setState("type", name);
-        break;
-      case "seconds":
-        this.setState("seconds", name);
-        break;
-    }
+    this.setState(name, name);
   }
 
   disappear() {
@@ -36,16 +26,11 @@ class Toast extends HTMLElement {
 
     setTimeout(() => {
       this.remove();
-    }, +this.state.seconds * 2000);
+    }, +this.state.seconds * 1100);
   }
 
   connectedCallback() {
-    this.classList.add("toast");
-    this.classList.add(this.state.type);
-    this.setState("message", "message");
-    this.setState("type", "type");
-    this.setState("seconds", "seconds");
-
+    this.classList.add("toast", this.state.type);
     this.render();
     this.disappear();
   }
