@@ -4,7 +4,7 @@
 
 Kanban board task management application with pure JavaScript. This application is using reusable custom html elements.
 
-### Features
+## Features
 
 - Add new task to board
 - Save tasks in local storage
@@ -13,7 +13,7 @@ Kanban board task management application with pure JavaScript. This application 
 - Show toast message when task is added
 - Align the tasks
 
-### Instalation
+## Instalation
 
 If you want to run this application on your local machine then follow the guide below.
 
@@ -33,6 +33,6 @@ npm start
 
 Application will run at 8080 port.
 
-### Contribution
+## Contribution
 
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
