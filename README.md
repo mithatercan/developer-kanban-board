@@ -2,6 +2,8 @@
 
 [Live demo](https://kanban-vanilla.netlify.app/)
 
+(https://user-images.githubusercontent.com/71825314/162646144-e98a1214-b7f3-4c1d-8f52-232fac17a601.gif)
+
 Kanban board task management application with pure JavaScript. This application is using reusable custom html elements.
 
 ## Features
