@@ -1,4 +1,4 @@
-import handleSubmit from "../methods/handleSubmit.js";
+import handleSubmit from '../lib/handleSubmit.js';
 
 class Modal extends HTMLElement {
   constructor() {
@@ -6,20 +6,20 @@ class Modal extends HTMLElement {
   }
 
   connectedCallback() {
-    this.classList.add("new-task-modal");
+    this.classList.add('new-task-modal');
     this.render();
 
-    const closeBtn = this.querySelector("i");
-    const form = this.querySelector("form");
+    const closeBtn = this.querySelector('i');
+    const form = this.querySelector('form');
 
-    closeBtn.addEventListener("click", (e) => {
-      this.classList.remove("opened");
+    closeBtn.addEventListener('click', (e) => {
+      this.classList.remove('opened');
     });
 
     //handle form submit
-    form.addEventListener("submit", (e) => {
+    form.addEventListener('submit', (e) => {
       handleSubmit(e);
-      this.classList.remove("opened");
+      this.classList.remove('opened');
     });
   }
 
@@ -43,6 +43,6 @@ class Modal extends HTMLElement {
   }
 }
 
-customElements.define("modal-component", Modal);
+customElements.define('modal-component', Modal);
 
 export default Modal;

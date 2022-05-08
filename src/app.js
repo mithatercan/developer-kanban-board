@@ -1,13 +1,13 @@
-import { myApp } from "./variables/index.js";
+import { myApp } from './variables/index.js';
 
 // components
-import Board from "./components/Board.js";
-import Sidebar from "./components/Sidebar.js";
-import Modal from "./components/Modal.js";
-import Task from "./components/Task.js";
-import Footer from "./components/Footer.js";
-import Toast from "./components/Toast.js";
-import initData from "./methods/initData.js";
+import './components/Board.js';
+import './components/Sidebar.js';
+import './components/Modal.js';
+import './components/Task.js';
+import './components/Footer.js';
+import './components/Toast.js';
+import './methods/initData.js';
 
 myApp.innerHTML = `
     <sidebar-component></sidebar-component>
