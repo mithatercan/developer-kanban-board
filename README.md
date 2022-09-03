@@ -25,7 +25,7 @@ First clone [this reposityory](https://github.com/mithatercann/kanban-board.git)
  npm install
 ```
 
-if you want to run this application on htpp-server then run the command below
+Run the application on htpp-server with the command down below
 
 ```bash
 npm start
